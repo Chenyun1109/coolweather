@@ -2,6 +2,8 @@ package jz.bd.cy.coolweather.util;
 
 import android.text.TextUtils;
 
+import com.google.gson.Gson;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -9,6 +11,7 @@ import org.json.JSONObject;
 import jz.bd.cy.coolweather.db.City;
 import jz.bd.cy.coolweather.db.County;
 import jz.bd.cy.coolweather.db.Province;
+import jz.bd.cy.coolweather.gson.Weather;
 
 /**
  * Phase the server's response.
@@ -74,5 +77,17 @@ public class Utility {
             }
         }
         return false;
+    }
+
+    public static Weather handleWeatherResponse(String response) {
+        try {
+            JSONObject object = new JSONObject(response);
+            JSONArray jsonArray = object.getJSONArray("HeWeather");
+            String weatherContent = jsonArray.getJSONObject(0).toString();
+            return new Gson().fromJson(weatherContent, Weather.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
