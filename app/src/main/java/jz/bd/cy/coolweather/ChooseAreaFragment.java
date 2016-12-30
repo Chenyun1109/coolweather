@@ -104,11 +104,12 @@ public class ChooseAreaFragment extends Fragment {
                         intent.putExtra("weather_id", weatherId);
                         startActivity(intent);
                         getActivity().finish();
-                    } else {
-                        WeatherActivity weatherActivity = (WeatherActivity) getActivity();
-                        weatherActivity.drawerLayout.closeDrawers();
-                        weatherActivity.refreshLayout.setRefreshing(true);
-                        weatherActivity.requestWeather(weatherId);
+                    } else if (getActivity() instanceof WeatherActivity) {
+                        WeatherActivity activity = (WeatherActivity) getActivity();
+                        activity.drawerLayout.closeDrawers();
+                        activity.swipeRefresh.setRefreshing(true);
+                        activity.requestWeather(weatherId);
+                        activity.weatherId = weatherId;
                     }
                 }
             }

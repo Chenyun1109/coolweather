@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">酷天气</string>
     <string name="hello_knife">Hello knife</string>
+    <string name="AQI">空气质量</string>
+    <string name="aqi">AQI指数</string>
+    <string name="forecast">预报</string>
+    <string name="suggestion">生活建议</string>
 </resources>
